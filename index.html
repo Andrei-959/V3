@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Career Compass</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(to right, #ff0000, #ffffff, #0000ff);
+            color: #333;
+            text-align: center;
+            margin: 0;
+            padding: 20px;
+        }
+
+        h1 {
+            font-size: 3rem;
+            color: navy;
+        }
+
+        input {
+            width: 80%;
+            padding: 10px;
+            font-size: 1.2rem;
+            margin: 20px 0;
+            border: 2px solid navy;
+            border-radius: 5px;
+        }
+
+        .career-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .career {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 15px;
+            margin: 10px 0;
+            text-align: left;
+        }
+
+        .career h2 {
+            color: navy;
+            margin-bottom: 5px;
+        }
+
+        .career p {
+            margin: 5px 0;
+            font-size: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <h1>Career Compass</h1>
+    <input type="text" id="search" placeholder="Search careers..." onkeyup="filterCareers()">
+
+    <div id="careers" class="career-container"></div>
+
+    <script>
+        const careers = [
+            { name: "Mechanic", companies: ["Ford", "Toyota"], education: ["Auto Repair Certification"], universities: ["MIT", "UTI"], sections: ["Automobile Repair", "Diesel Mechanics"] },
+            { name: "Nurse", companies: ["Mayo Clinic", "Johns Hopkins"], education: ["Biology, Chemistry"], universities: ["Harvard", "Johns Hopkins"], sections: ["Pediatrics", "Surgery", "ER"] },
+            { name: "Judge", companies: ["Supreme Court", "State Courts"], education: ["Political Science, Law"], universities: ["Yale", "Harvard"], sections: ["Criminal", "Civil"] },
+            { name: "Police Officer", companies: ["FBI", "Local PD"], education: ["Criminal Justice"], universities: ["Police Academy"], sections: ["Patrol", "Investigation"] },
+            { name: "Astronaut", companies: ["NASA", "SpaceX"], education: ["Physics, Engineering"], universities: ["MIT", "Stanford"], sections: ["Spacewalks", "Research"] },
+            { name: "Firefighter", companies: ["Fire Department"], education: ["Emergency Response"], universities: ["Fire Academy"], sections: ["Rescue", "Hazard Control"] },
+            { name: "Architect", companies: ["Gensler", "Foster+Partners"], education: ["Math, Physics"], universities: ["Harvard", "Columbia"], sections: ["Residential", "Commercial"] },
+            { name: "Programmer", companies: ["Google", "Microsoft"], education: ["Computer Science"], universities: ["MIT", "Stanford"], sections: ["Web Dev", "AI"] },
+            { name: "Surgeon", companies: ["Cleveland Clinic", "Mayo Clinic"], education: ["Biology, Chemistry"], universities: ["Harvard", "Johns Hopkins"], sections: ["Neurosurgery", "Cardiology"] },
+            { name: "Teacher", companies: ["Public Schools", "Private Schools"], education: ["Education, Psychology"], universities: ["Harvard", "Stanford"], sections: ["Elementary", "High School"] }
+        ];
+
+        function displayCareers() {
+            const careerContainer = document.getElementById("careers");
+            careerContainer.innerHTML = "";
+
+            careers.forEach(career => {
+                const careerDiv = document.createElement("div");
+                careerDiv.classList.add("career");
+                careerDiv.innerHTML = `
+                    <h2>${career.name}</h2>
+                    <p><strong>Top Companies:</strong> ${career.companies.join(", ")}</p>
+                    <p><strong>High School Classes:</strong> ${career.education.join(", ")}</p>
+                    <p><strong>Best Universities:</strong> ${career.universities.join(", ")}</p>
+                    <p><strong>Career Subsections:</strong> ${career.sections.join(", ")}</p>
+                `;
+                careerContainer.appendChild(careerDiv);
+            });
+        }
+
+        function filterCareers() {
+            const query = document.getElementById("search").value.toLowerCase();
+            const careerContainer = document.getElementById("careers");
+            careerContainer.innerHTML = "";
+
+            careers.filter(career => career.name.toLowerCase().includes(query)).forEach(career => {
+                const careerDiv = document.createElement("div");
+                careerDiv.classList.add("career");
+                careerDiv.innerHTML = `
+                    <h2>${career.name}</h2>
+                    <p><strong>Top Companies:</strong> ${career.companies.join(", ")}</p>
+                    <p><strong>High School Classes:</strong> ${career.education.join(", ")}</p>
+                    <p><strong>Best Universities:</strong> ${career.universities.join(", ")}</p>
+                    <p><strong>Career Subsections:</strong> ${career.sections.join(", ")}</p>
+                `;
+                careerContainer.appendChild(careerDiv);
+            });
+        }
+
+        displayCareers();
+    </script>
+</body>
+</html>
